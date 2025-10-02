@@ -390,12 +390,25 @@ class MainActivity : AppCompatActivity() {
     //将虚拟点添加到地图
     private fun addVirtualItemsToMap() {
         virtualItems.forEach { item ->
+            // 根据收集状态设置不同的颜色
+            val iconColor = if (item.isCollected || collectedItems.contains(item.name)) {
+                BitmapDescriptorFactory.HUE_GREEN // 已收集：绿色
+            } else {
+                BitmapDescriptorFactory.HUE_YELLOW // 未收集：黄色
+            }
+
+            val snippet = if (item.isCollected || collectedItems.contains(item.name)) {
+                "已收集"
+            } else {
+                "点击收集"
+            }
+
             aMap.addMarker(
                 MarkerOptions()
                     .position(item.location)
                     .title(item.name)
-                    .snippet("点击收集")
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
+                    .snippet(snippet)
+                    .icon(BitmapDescriptorFactory.defaultMarker(iconColor))
             )
         }
     }
