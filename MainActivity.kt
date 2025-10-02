@@ -251,7 +251,7 @@ class MainActivity : AppCompatActivity() {
         marker.snippet = "已收集 - ${marker.snippet}"
 
         // 更新分数
-        updateScore(15) // POI物品分数更高
+        updateScore(15) // POI物品分数
 
         Toast.makeText(this, "✅ 收集成功: $title", Toast.LENGTH_SHORT).show()
 
